@@ -82,8 +82,6 @@ for (key, value) in makes_dictionary.items():
 for key in makes_dictionary.keys():
     print(f"{key}")
     print(f"----------------")
-    if makes_dictionary[key] == {}:
-        print("There are no models available for this make.")
     for (model_key, color_value) in makes_dictionary[key].items():
             print(f"{model_key} available in {', '.join(color_value)}")
     print()
