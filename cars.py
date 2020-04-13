@@ -1,7 +1,7 @@
 makes = (
   (1, "Toyota"), (2, "Nissan"),
   (3, "Ford"), (4, "Mini"),
-  (5, "Honda"), (6, "Dodge"),
+  (5, "Honda"), (6, "Dodge"), (7, "Hyundai")
 )
 
 models = (
@@ -12,7 +12,7 @@ models = (
   (9, "Civic", 5), (10, "Ram", 6),
   (11, "Cooper", 4), (12, "Pilot", 5),
   (13, "Xterra", 2), (14, "Sentra", 2),
-  (15, "Charger", 6)
+  (15, "Charger", 6), (16, "Rogue", 2)
 )
 
 colors = (
@@ -56,17 +56,25 @@ for (key, value) in makes_dictionary.items():
                                 color_list.append(color[1])
                 if model[2] == make[0]:
                     makes_dictionary[key][model[1]] = color_list
+                    if color_list == []:
+                        makes_dictionary[key][model[1]] = "no colors at this time"
                 color_list = []
 
-for make in makes:
-    print(f"{make[1]}")
-    print("------------------")
-    for key in makes_dictionary.keys():
-        if key == make[1]:
-            for (model_key, color_value) in makes_dictionary[key].items():
-                print(f"{model_key} available in {', '.join(color_value)}")
-            print()
-
-
+# for make in makes:
+#     print(f"{make[1]}")
+#     print("------------------")
+for key in makes_dictionary.keys():
+    print(f"{key}")
+    print(f"----------------")
+    if makes_dictionary[key] == {}:
+        print("There are no models available for this make.")
+    # if key == make[1]:
+    for (model_key, color_value) in makes_dictionary[key].items():
+        if type(color_value) == str:
+            print(f"{model_key} available in {color_value}")
+        else:
+            print(f"{model_key} available in {', '.join(color_value)}")
+    print()
 
 # makes_dictionary['Toyota']["Prius"] = ["Charcoal", "Brick", "Ivory"]
+print(makes_dictionary["Hyundai"])
