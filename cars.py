@@ -39,18 +39,12 @@ available_car_colors = (
   (15, 1), (15, 4), (15, 7)
 )
 
-# set of make id numbers
-make_inventory = set()
-for item in makes:
-    make_inventory.add(item[0])
+
 # set of make id numbers associated with models
 model_make_ids = set()
 for item in models:
     model_make_ids.add(item[2])
-# set of model id numbers
-model_inventory = set()
-for item in models:
-    model_inventory.add(item[0])
+
 # set of model id numbers associated with colors
 color_inventory = set()
 for item in available_car_colors:
