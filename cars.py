@@ -39,26 +39,44 @@ available_car_colors = (
   (15, 1), (15, 4), (15, 7)
 )
 
+# set of make id numbers
+make_inventory = set()
+for item in makes:
+    make_inventory.add(item[0])
+# set of make id numbers associated with models
+model_make_ids = set()
+for item in models:
+    model_make_ids.add(item[2])
+# set of model id numbers
+model_inventory = set()
+for item in models:
+    model_inventory.add(item[0])
+# set of model id numbers associated with colors
+color_inventory = set()
+for item in available_car_colors:
+    color_inventory.add(item[0])
+
+
 makes_dictionary = dict()
 
 for make in makes:
-    makes_dictionary[make[1]] = dict()
+    if make[0] in model_make_ids:
+        makes_dictionary[make[1]] = dict()
 
 for (key, value) in makes_dictionary.items():
     for make in makes:
         if key == make[1]:
             for model in models:
-                color_list = list()
-                for av_color in available_car_colors:
-                    if model[0] == av_color[0]:
-                        for color in colors:
-                            if color[0] == av_color[1]:
-                                color_list.append(color[1])
-                if model[2] == make[0]:
-                    makes_dictionary[key][model[1]] = color_list
-                    if color_list == []:
-                        makes_dictionary[key][model[1]] = "no colors at this time"
-                color_list = []
+                if model[0] in color_inventory:
+                    color_list = list()
+                    for av_color in available_car_colors:
+                        if model[0] == av_color[0]:
+                            for color in colors:
+                                if color[0] == av_color[1]:
+                                    color_list.append(color[1])
+                    if model[2] == make[0]:
+                        makes_dictionary[key][model[1]] = color_list
+                    color_list = []
 
 
 for key in makes_dictionary.keys():
@@ -67,9 +85,6 @@ for key in makes_dictionary.keys():
     if makes_dictionary[key] == {}:
         print("There are no models available for this make.")
     for (model_key, color_value) in makes_dictionary[key].items():
-        if type(color_value) == str:
-            print(f"{model_key} available in {color_value}")
-        else:
             print(f"{model_key} available in {', '.join(color_value)}")
     print()
 
