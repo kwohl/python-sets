@@ -60,15 +60,12 @@ for (key, value) in makes_dictionary.items():
                         makes_dictionary[key][model[1]] = "no colors at this time"
                 color_list = []
 
-# for make in makes:
-#     print(f"{make[1]}")
-#     print("------------------")
+
 for key in makes_dictionary.keys():
     print(f"{key}")
     print(f"----------------")
     if makes_dictionary[key] == {}:
         print("There are no models available for this make.")
-    # if key == make[1]:
     for (model_key, color_value) in makes_dictionary[key].items():
         if type(color_value) == str:
             print(f"{model_key} available in {color_value}")
@@ -77,4 +74,4 @@ for key in makes_dictionary.keys():
     print()
 
 # makes_dictionary['Toyota']["Prius"] = ["Charcoal", "Brick", "Ivory"]
-print(makes_dictionary["Hyundai"])
+# helpful to write out format with actual values for reference ^
